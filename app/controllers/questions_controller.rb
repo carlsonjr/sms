@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :current_user_must_be_question_user, :only => [:edit, :update, :destroy]
+  before_action :current_user_must_be_question_user, :only => [:show, :edit, :update, :destroy]
 
   def current_user_must_be_question_user
     question = Question.find(params[:id])
