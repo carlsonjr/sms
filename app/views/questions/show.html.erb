@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h3>Question #<%= @question.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>User</dt>
+      <dd><%= @question.user_id %></dd>
+
+      <dt>Question</dt>
+      <dd><%= @question.question %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/questions" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/questions/<%= @question.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_question/<%= @question.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
