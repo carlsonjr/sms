@@ -47,8 +47,6 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-
-    @question.user_id = params[:user_id]
     @question.question = params[:question]
 
     save_status = @question.save
