@@ -1,5 +1,5 @@
 class ResponsesController < ApplicationController
-  before_action :current_user_must_be_response_user, :only => [:edit, :update, :destroy]
+  before_action :current_user_must_be_response_user, :only => [:show, :edit, :update, :destroy]
 
   def current_user_must_be_response_user
     response = Response.find(params[:id])
