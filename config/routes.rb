@@ -2,6 +2,15 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root :to => "questions#index"
+  
+  # Routes for SMS testing
+  
+  get "/send_test_message", :controller => "messages", :action => "send_test_message"
+  
+  
+  
+  
+  
   # Routes for the Response resource:
   # CREATE
   get "/responses/new", :controller => "responses", :action => "new"

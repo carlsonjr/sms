@@ -31,13 +31,8 @@
       </div>
 
       <!-- Label and input for time -->
-      <div class="form-group">
-        <label for="time" class="control-label">
-          Time
-        </label>
 
-        <input type="text" id="time" name="time" placeholder="Time" class="form-control" value="<%= @response.time %>">
-      </div>
+        <input type="hidden" id="time" name="time" placeholder="Time" class="form-control" value="<%= DateTime.now %>">
 
       <!-- Label and input for response_text -->
       <div class="form-group">
