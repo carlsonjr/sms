@@ -9,6 +9,11 @@
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
+    <%= f.label :response_text_cont, "Response text contains" %>
+    <%= f.text_field :response_text_cont, :class => "form-control", :placeholder => "Response text contains" %>
+  </div>
+
+<div class="form-group">
           <%= f.label :time, "Time" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
@@ -110,6 +115,7 @@
         <th>User</th>
         <th>Question</th>
         <th>Time</th>
+        <th>Response text</th>
         <th>Actions</th>
       </tr>
 
@@ -130,6 +136,7 @@
           <% end %>
         </td>
         <td><%= response.time %></td>
+        <td><%= response.response_text %></td>
         <td>
           <a href="/responses/<%= response.id %>" class="btn btn-primary">Show</a>
           
