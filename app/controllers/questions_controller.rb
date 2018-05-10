@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.all
+    @questions = current_user.questions.page(params[:page]).per(10)
 
     render("questions/index.html.erb")
   end
