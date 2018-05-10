@@ -11,6 +11,9 @@
       <dt>Password</dt>
       <dd><%= @user.password %></dd>
 
+      <dt>Phone number</dt>
+      <dd><%= @user.phone_number %></dd>
+
     </dl>
 
     <div class="btn-group btn-group-justified">
@@ -66,7 +69,7 @@
       <% @user.responses.each do |response| %>
         <li class="list-group-item">
           <a href="/responses/<%= response.id %>">
-            <%= response.user_id %>
+            <%= response.response_text %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/responses/<%= response.id %>" class="btn btn-primary">

@@ -39,6 +39,15 @@
         <input type="text" id="time" name="time" placeholder="Time" class="form-control" value="<%= @response.time %>">
       </div>
 
+      <!-- Label and input for response_text -->
+      <div class="form-group">
+        <label for="response_text" class="control-label">
+          Response text
+        </label>
+
+        <input type="text" id="response_text" name="response_text" placeholder="Response text" class="form-control" value="<%= @response.response_text %>">
+      </div>
+
       <button class="btn btn-success">
         Create Response
       </button>
