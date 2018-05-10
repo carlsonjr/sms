@@ -47,7 +47,7 @@
       <% @question.responses.each do |response| %>
         <li class="list-group-item">
           <a href="/responses/<%= response.id %>">
-            <%= response.user_id %>
+            <%= response.response_text %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/responses/<%= response.id %>" class="btn btn-primary">
@@ -81,6 +81,15 @@
         </label>
 
         <input type="text" id="time" name="time" placeholder="Time" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for response_text -->
+      <div class="form-group">
+        <label for="response_text" class="control-label">
+          Response text
+        </label>
+
+        <input type="text" id="response_text" name="response_text" placeholder="Response text" class="form-control" value="">
       </div>
 
       <button class="btn btn-block btn-success">

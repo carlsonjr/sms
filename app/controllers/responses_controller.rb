@@ -34,6 +34,7 @@ class ResponsesController < ApplicationController
     @response.user_id = params[:user_id]
     @response.question_id = params[:question_id]
     @response.time = params[:time]
+    @response.response_text = params[:response_text]
 
     save_status = @response.save
 
@@ -61,6 +62,7 @@ class ResponsesController < ApplicationController
     @response = Response.find(params[:id])
     @response.question_id = params[:question_id]
     @response.time = params[:time]
+    @response.response_text = params[:response_text]
 
     save_status = @response.save
 
