@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Direct associations
 
+  has_many   :questions,
+             :dependent => :destroy
+
   # Indirect associations
 
   # Validations
