@@ -48,8 +48,6 @@ class ResponsesController < ApplicationController
 
   def update
     @response = Response.find(params[:id])
-
-    @response.user_id = params[:user_id]
     @response.question_id = params[:question_id]
     @response.time = params[:time]
 
