@@ -1,4 +1,14 @@
 class QuestionsController < ApplicationController
+  before_action :current_user_must_be_question_user, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_question_user
+    question = Question.find(params[:id])
+
+    unless current_user == question.user
+      redirect_to :back, :alert => "You are not authorized for that."
+    end
+  end
+
   def index
     @questions = Question.all
 
