@@ -26,6 +26,20 @@ end
 
 def new_response
     
+require 'rubygems' # not necessary with ruby 1.9 but included for completeness
+require 'twilio-ruby'
+require 'sinatra'
+
+# send a dynamic reply to incoming text message
+  # transform request body to lowercase
+  body = params['Body'].downcase
+  ap(body)
+  @r = Response.new
+  @r.question_id = 1
+  @r.user_id = 1
+  @r.response_text = body
+  @r.time = DateTime.now
+  @r.save
     
     
 end

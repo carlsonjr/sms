@@ -64,3 +64,4 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem "wdm" if Gem.win_platform?
 gem 'twilio-ruby', '~> 5.9.0'
 gem 'dotenv-rails'
+gem 'sinatra'
