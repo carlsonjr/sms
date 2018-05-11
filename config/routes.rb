@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # Routes for SMS testing
   
   get "/send_test_message", :controller => "messages", :action => "send_test_message"
-  
+  post "/new_response", :controller => "messages", :action => "new_response"
   
   
   
