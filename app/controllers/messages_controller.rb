@@ -1,4 +1,7 @@
 class MessagesController < ApplicationController
+    skip_before_action :verify_authenticity_token
+    skip_before_action :authenticate_user!
+    
 def send_test_message
     require 'rubygems'
     require 'twilio-ruby'
@@ -30,16 +33,26 @@ require 'rubygems' # not necessary with ruby 1.9 but included for completeness
 require 'twilio-ruby'
 require 'sinatra'
 
-# send a dynamic reply to incoming text message
-  # transform request body to lowercase
-  body = params['Body'].downcase
-  ap(body)
+# get '/sms' do
+#   twiml = Twilio::TwiML::MessagingResponse.new do |r|
+#     r.message body: 'I hear you'
+#   end
+
+#   content_type 'text/xml'
+
+#   twiml.to_s
+# end
+  puts(params)
+  body = params[:Body].downcase
+  puts(body)
   @r = Response.new
   @r.question_id = 1
   @r.user_id = 1
   @r.response_text = body
   @r.time = DateTime.now
+  puts()
   @r.save
+    
     
     
 end

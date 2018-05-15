@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   
   get "/send_test_message", :controller => "messages", :action => "send_test_message"
   post "/new_response", :controller => "messages", :action => "new_response"
-  
+  post "/sms", :controller => "messages", :action => "new_response"  
+  get "/sms", :controller => "messages", :action => "new_response"  
   
   
   
