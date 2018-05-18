@@ -44,13 +44,17 @@ require 'sinatra'
 # end
   puts(params)
   body = params[:Body].downcase
-  puts(body)
+  phone_number = params[:From].to_s
+  puts(phone_number)
+  phone_number = phone_number.gsub(/[+]/,'')
+  puts(phone_number)
+  user_id=User.where(:phone_number => phone_number).first.id
+  puts(user_id)
   @r = Response.new
-  @r.question_id = 1
-  @r.user_id = 1
+  @r.question_id = Question.where(:user_id => user_id).first.id
+  @r.user_id = user_id
   @r.response_text = body
   @r.time = DateTime.now
-  puts()
   @r.save
     
     

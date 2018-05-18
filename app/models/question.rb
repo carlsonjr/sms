@@ -5,6 +5,8 @@ class Question < ApplicationRecord
              :dependent => :nullify
 
   belongs_to :user
+  validates :question, presence: true 
+  
 
   # Indirect associations
 

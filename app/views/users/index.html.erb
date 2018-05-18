@@ -5,6 +5,16 @@
   </h1>
 </div>
 
+ <h1> 
+ <% phone_number = "16305029079"%>
+ <%=phone_number%></br>
+ <% user_id=User.where(:phone_number => phone_number).first.id%>
+ <%=user_id%>
+ 
+ 
+ </h1>
+
+
 <div class="row">
   <div class="col-md-12">
     <table class="table table-striped table-hover">
@@ -17,7 +27,9 @@
 
       <% @users.each do |user| %>
       <tr>
-        <td><%= user.email %></td>
+        <td>
+          <%= user.id %>
+          <%= user.email %></td>
         <td><%= user.password %></td>
         <td><%= user.phone_number %></td>
         <td>

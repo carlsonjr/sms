@@ -10,6 +10,9 @@ end
 group :production do
   gem "pg"
   gem "rails_12factor"
+  gem 'twilio-ruby', '~> 5.9.0'
+  gem 'dotenv-rails'
+  gem 'sinatra'
 end
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -62,7 +65,3 @@ gem "ransack"
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem "wdm" if Gem.win_platform?
-gem 'twilio-ruby', '~> 5.9.0'
-gem 'dotenv-rails'
-gem 'sinatra'
-gem 'awesome_print'
