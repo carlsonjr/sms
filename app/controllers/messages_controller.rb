@@ -36,17 +36,8 @@ require 'rubygems' # not necessary with ruby 1.9 but included for completeness
 require 'twilio-ruby'
 require 'sinatra'
 
-# get '/sms' do
-#   twiml = Twilio::TwiML::MessagingResponse.new do |r|
-#     r.message body: 'I hear you'
-#   end
-
-#   content_type 'text/xml'
-
-#   twiml.to_s
-# end
   puts(params)
-  body = params[:Body].downcase
+  body = params[:Body]
   phone_number = params[:From].to_s
   puts(phone_number)
   phone_number = phone_number.gsub(/[+]/,'')
