@@ -5,10 +5,11 @@ class MessagesController < ApplicationController
 def send_test_message
     require 'rubygems'
     require 'twilio-ruby'
-
+    
 # put your own credentials here
-account_sid = 'AC29aac65aa779f96b0410a0e6c21e60b1'
-auth_token = '70cc034bec6921c082ceaeed895b2a8f'
+account_sid = ENV['TWILIO_ACCT_ID']
+puts account_sid
+auth_token = ENV['TWILIO_AUTH_TOKEN']
 
 # set up a client to talk to the Twilio REST API
 @client = Twilio::REST::Client.new(account_sid, auth_token)
