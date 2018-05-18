@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   # READ
   get "/responses", :controller => "responses", :action => "index"
   get "/responses/:id", :controller => "responses", :action => "show"
+  get "/empty", :controller => "responses", :action => "empty"
 
   # UPDATE
   get "/responses/:id/edit", :controller => "responses", :action => "edit"

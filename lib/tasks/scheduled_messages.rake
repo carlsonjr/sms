@@ -18,7 +18,7 @@ namespace :scheduled_messages do
       
 # Loop through users and send message
     User.where(:enabled => 1).each do |user|
-      phone_number = "+"+user.phone_number
+      phone_number = "+1"+user.phone_number
       question = Question.where(:user_id => user.id).first.question
 
     message = @client.messages

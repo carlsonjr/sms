@@ -3,7 +3,6 @@ class ResponsesController < ApplicationController
 
   def current_user_must_be_response_user
     response = Response.find(params[:id])
-
     unless current_user == response.user
       redirect_to :back, :alert => "You are not authorized for that."
     end
@@ -11,9 +10,24 @@ class ResponsesController < ApplicationController
 
   def index
     @q = current_user.responses.ransack(params[:q])
+    if Question.where(:user_id => current_user.id).count == 0
+      question = Question.new
+      question.user_id = current_user.id
+      question.save
+    end
+    
     @responses = @q.result(:distinct => true).includes(:user, :question).page(params[:page]).per(10)
-
+    if @responses.count >0 
+      
     render("responses/index.html.erb")
+    else
+      render("responses/empty.html.erb")
+    end
+  end
+  
+  def empty
+    @q = current_user.responses.ransack(params[:q])
+    render("responses/empty.html.erb")
   end
 
   def show
