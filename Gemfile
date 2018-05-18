@@ -10,6 +10,9 @@ end
 group :production do
   gem "pg"
   gem "rails_12factor"
+  gem 'twilio-ruby', '~> 5.9.0'
+  gem 'dotenv-rails'
+  gem 'sinatra'
 end
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

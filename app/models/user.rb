@@ -10,6 +10,8 @@ class User < ApplicationRecord
   # Indirect associations
 
   # Validations
+  validates :phone_number, uniqueness: true
+  
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

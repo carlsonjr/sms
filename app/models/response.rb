@@ -6,6 +6,8 @@ class Response < ApplicationRecord
 
   belongs_to :user,
              :counter_cache => true
+             
+  validates :time, presence: true 
 
   # Indirect associations
 
