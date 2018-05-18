@@ -1,10 +1,16 @@
 <div class="page-header">
-  <h1>
-    Responses
-    <a href="/responses/new" class="btn btn-lg btn-success">New Response</a>
-  </h1>
+  
+  <div class="jumbotron">
+  <h1 class="display-4"><%=Question.where(:user_id => current_user.id).first.question%></h1>
+  <p class="lead"></p>
+  <hr class="my-4">
+  <p>In the last week, you've responded 5/5 times. Great job!</p>
+  </div>
+ 
 </div><div class="row mb-1">
   <div class="col-md-12">
+    
+    <!--Start search form-->
     <%= search_form_for @q, :class => collapse_search_form, :id => "responses_filters" do |f| %>
       <p class="lead">Narrow results:</p>
 
@@ -12,142 +18,41 @@
     <%= f.label :response_text_cont, "Response text contains" %>
     <%= f.text_field :response_text_cont, :class => "form-control", :placeholder => "Response text contains" %>
   </div>
-
-<div class="form-group">
-          <%= f.label :time, "Time" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='timegteqPicker'>
-                  <%= f.text_field :time_gteq, :class => "form-control", :placeholder => "Time greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-
-            <div class='col-md-6'>
-              <div class='input-group date' id='timelteqPicker'>
-                  <%= f.text_field :time_lteq, :class => "form-control", :placeholder => "Time less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#timegteqPicker').datetimepicker({
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#timelteqPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#timegteqPicker').on("dp.change", function (e) {
-                  $('#timelteqPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#timelteqPicker').on("dp.change", function (e) {
-                  $('#timegteqPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
-
-<div class="form-group">
-          <%= f.label :created_at, "Created at" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='created_atgteqPicker'>
-                  <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-
-            <div class='col-md-6'>
-              <div class='input-group date' id='created_atlteqPicker'>
-                  <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#created_atgteqPicker').datetimepicker({
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atlteqPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atgteqPicker').on("dp.change", function (e) {
-                  $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#created_atlteqPicker').on("dp.change", function (e) {
-                  $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
-
-        <div class="form-group">
-      <%= f.label :user_email_cont, "User email contains" %>
-      <%= f.text_field :user_email_cont, :class => "form-control", :placeholder => "User email contains" %>
-    </div>
-
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
       <a href="/responses" class="btn btn-default btn-block mb-1">Clear filters</a>
     <% end %>
     <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#responses_filters">
-      Show Filters
+      Search responses
     </a>
   </div>
 </div>
+ <!--End search form-->
+
 
 <div class="row">
   <div class="col-md-12">
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>User</th>
-        <th>Question</th>
-        <th>Time</th>
-        <th>Response text</th>
-        <th>Actions</th>
-      </tr>
-
+    <div class="card-columns">
+     
       <% @responses.each do |response| %>
-      <tr>
-        <td>
-          <% if response.user.present? %>
-            <a href="/users/<%= response.user.id %>">
-              <%= response.user.email %>
-            </a>
-          <% end %>
-        </td>
-        <td>
-          <% if response.question.present? %>
-            <a href="/questions/<%= response.question.id %>">
-              <%= response.question.user_id %>
-            </a>
-          <% end %>
-        </td>
-        <td><%= response.time %></td>
-        <td><%= response.response_text %></td>
-        <td>
-          <a href="/responses/<%= response.id %>" class="btn btn-primary">Show</a>
-          
-          <% if current_user == response.user %>
-            <a href="/responses/<%= response.id %>/edit" class="btn btn-warning">Edit</a>
-            <a href="/delete_response/<%= response.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-          <% end %>
-        </td>
-      </tr>
+       <div class="card p-3">
+         <blockquote class="blockquote mb-0 card-body">
+           <p><%=response.response_text%></p>
+          <footer class="blockquote-footer">
+          <small class="text-muted">
+            Made a mistake? < <a href="/responses/<%= response.id %>/edit">Edit your response.</a>
+          </small>
+          </footer>
+         </blockquote>
+      </div>
       <% end %>
-    </table>
+    </div>
     <%= paginate @responses, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>
+  <div class="row">
+    <div class="col-md-12">
+    Or, manually add a response.
+    </div>
+</div>
+

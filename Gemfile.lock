@@ -304,6 +304,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise
+  dotenv
   dotenv-rails
   draft_generators!
   font-awesome-sass (~> 4.5.0)

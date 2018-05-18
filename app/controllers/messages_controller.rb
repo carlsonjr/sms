@@ -5,6 +5,8 @@ class MessagesController < ApplicationController
 def send_test_message
     require 'rubygems'
     require 'twilio-ruby'
+    require 'dotenv'
+    require 'dotenv-rails'
     
 # put your own credentials here
 account_sid = ENV['TWILIO_ACCT_ID']
