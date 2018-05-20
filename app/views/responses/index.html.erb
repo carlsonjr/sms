@@ -8,29 +8,29 @@
   <div class="col-md-12">
     
       <div class="jumbotron bg-primary text-light">
-  <h1 class="display-4"><%=Question.where(:user_id => current_user.id).first.question%></h1>
+  <h1 class="display-4"><%=Question.where(:user_id => current_user.id).first.question%> 📚</h1>
   <p class="lead"></p>
-  <hr class="my-4 bg-light">
-  <div class="w-25">
-  <table class="table table-sm text-center table-borderless text-light">
-    <% days = ["M","T","W","Th","F","Sa","Su"]%>
-    <% days.each do |day| %>
-    <th class =><%=day%></th>
+  <!--<hr class="my-4 bg-light">-->
+  <!--<div class="w-25">-->
+  <!--<table class="table table-sm text-center table-borderless text-light">-->
+  <!--  <% days = ["M","T","W","Th","F","Sa","Su"]%>-->
+  <!--  <% days.each do |day| %>-->
+  <!--  <th class =><%=day%></th>-->
     
-    <% end %>
-    <tr>
-      <td>✔️</td>
-      <td>✔️</td>
-      <td>✔️</td>
-      <td>✔️</td>
-      <td>✔️</td>
-      <td>✔️</td>
-      <td>✔️</td>
+  <!--  <% end %>-->
+  <!--  <tr>-->
+  <!--    <td>✔️</td>-->
+  <!--    <td>✔️</td>-->
+  <!--    <td>✔️</td>-->
+  <!--    <td>✔️</td>-->
+  <!--    <td>✔️</td>-->
+  <!--    <td>✔️</td>-->
+  <!--    <td>✔️</td>-->
       
-    </tr>
+  <!--  </tr>-->
     
-  </table>
-    </div>
+  <!--</table>-->
+    <!--</div>-->
     
    
   

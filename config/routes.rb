@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root :to => "responses#index"
+  devise_for :users, controllers: { registrations: 'users/registrations'}
   
   # Routes for SMS testing
   
@@ -47,11 +48,11 @@ Rails.application.routes.draw do
   get "/delete_question/:id", :controller => "questions", :action => "destroy"
   #------------------------------
 
-  devise_for :users
+  # devise_for :users
   # Routes for the User resource:
   # READ
-  get "/users", :controller => "users", :action => "index"
-  get "/users/:id", :controller => "users", :action => "show"
+  # get "/users", :controller => "users", :action => "index"
+  # get "/users/:id", :controller => "users", :action => "show"
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
