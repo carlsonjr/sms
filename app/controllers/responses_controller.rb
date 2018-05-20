@@ -75,7 +75,7 @@ class ResponsesController < ApplicationController
   def update
     @response = Response.find(params[:id])
     @response.question_id = params[:question_id]
-    @response.time = params[:time]
+    @response.time = DateTime.now
     @response.response_text = params[:response_text]
 
     save_status = @response.save
@@ -85,12 +85,12 @@ class ResponsesController < ApplicationController
 
       case referer
       when "/responses/#{@response.id}/edit", "/update_response"
-        redirect_to("/responses/#{@response.id}", :notice => "Response updated successfully.")
+        redirect_to("/", :notice => "Response updated successfully.")
       else
         redirect_back(:fallback_location => "/", :notice => "Response updated successfully.")
       end
     else
-      render("responses/edit.html.erb")
+      redirect_to("/")
     end
   end
 
@@ -101,6 +101,8 @@ class ResponsesController < ApplicationController
 
     if URI(request.referer).path == "/responses/#{@response.id}"
       redirect_to("/", :notice => "Response deleted.")
+    elsif URI(request.referer).path == "/responses/#{@response.id}/edit"
+      redirect_to("/", :notice => "Response deleted.")    
     else
       redirect_back(:fallback_location => "/", :notice => "Response deleted.")
     end

@@ -7,12 +7,12 @@
 <div class="row mb-1">
   <div class="col-md-12">
     
-      <div class="jumbotron bg-dark text-light">
+      <div class="jumbotron bg-primary text-light">
   <h1 class="display-4"><%=Question.where(:user_id => current_user.id).first.question%></h1>
   <p class="lead"></p>
   <hr class="my-4 bg-light">
-  
-  class="table table-sm"<table class="table table-sm text-center table-borderless">
+  <div class="w-25">
+  <table class="table table-sm text-center table-borderless text-light">
     <% days = ["M","T","W","Th","F","Sa","Su"]%>
     <% days.each do |day| %>
     <th class =><%=day%></th>
@@ -20,18 +20,20 @@
     <% end %>
     <tr>
       <td>✔️</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      
     </tr>
     
   </table>
-    
+    </div>
     
    
   
-  
-  
-  
-  <p>In the last week, you've responded 5/5 times. Great job!</p>
-
   </div>
   </div>
   
@@ -52,7 +54,7 @@
 
       <a href="/responses" class="btn btn-default btn-block mb-1">Clear filters</a>
     <% end %>
-    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#responses_filters">
+    <a class="btn btn-primary btn-block mb-1" data-toggle="collapse" href="#responses_filters">
       Search responses
     </a>
   </div>
@@ -62,18 +64,21 @@
 
 <div class="row">
   <div class="col-md-12">
+    
+    
     <div class="card-columns">
      
       <% @responses.each do |response| %>
        <div class="card p-3">
-          <% t = response.created_at.in_time_zone(current_user.time_zone) %>
-          <p class="card-text text-right"><%=t.strftime("%A, %B %y, %Y: %l:%M %p %Z")%></p>
+            <% t = response.created_at.in_time_zone(current_user.time_zone) %>
+          <p class="card-text text-right font-weight-light" style="font-size: small"><%=t.strftime("%A, %B %y, %Y: %l:%M %p %Z")%></p>
+
          <blockquote class="blockquote mb-0 card-body">
            <p><%=response.response_text%></p>
           <p class="card-text">
          
-          <small class="text-muted">
-            Made a mistake? <a href="/responses/<%= response.id %>/edit">Edit your response.</a>
+          <small class="text-muted" style="font-size: small">
+            <a href="/responses/<%= response.id %>/edit">Edit</a>
           </small>
           </p>
          </blockquote>
@@ -83,9 +88,3 @@
     <%= paginate @responses, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>
-  <div class="row">
-    <div class="col-md-12">
-    Or, manually add a response.
-    </div>
-</div>
-
