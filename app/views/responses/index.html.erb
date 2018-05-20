@@ -70,8 +70,6 @@
      
       <% @responses.each do |response| %>
        <div class="card p-3">
-            <% t = response.created_at.in_time_zone(current_user.time_zone) %>
-          <p class="card-text text-right font-weight-light" style="font-size: small"><%=t.strftime("%A, %B %y, %Y: %l:%M %p %Z")%></p>
 
          <blockquote class="blockquote mb-0 card-body">
            <p><%=response.response_text%></p>
