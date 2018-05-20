@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'dotenv'
+gem 'dotenv-rails'
+
 group :development do
   gem "sqlite3"
 end
@@ -11,7 +14,7 @@ group :production do
   gem "pg"
   gem "rails_12factor"
   gem 'twilio-ruby', '~> 5.9.0'
-  gem 'dotenv-rails'
+
   gem 'sinatra'
 end
 # Use Puma as the app server
@@ -65,3 +68,4 @@ gem "ransack"
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem "wdm" if Gem.win_platform?
+

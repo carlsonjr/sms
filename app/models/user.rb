@@ -10,7 +10,12 @@ class User < ApplicationRecord
   # Indirect associations
 
   # Validations
+  
+  
+  validates :time_zone, presence: true
   validates :phone_number, uniqueness: true
+  validates :phone_number, length: {:is => 10}
+  
   
 
   # Include default devise modules. Others available are:
