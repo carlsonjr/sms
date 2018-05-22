@@ -14,6 +14,8 @@
 
 <div class="row">
   <div class="col-md-12">
+    User id: <%= current_user.id %>
+    Question id: <%=Question.where(:user_id => current_user.id).first.id%>
     <form action="/create_response" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
