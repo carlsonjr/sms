@@ -25,7 +25,7 @@
 
       <!-- Label and input for question_id -->
       
-        <input type ="hidden" name="user_id" value="<%=Question.where(:user_id => current_user.id).first%>"
+        <input type ="hidden" name="question_id" value="<%=Question.where(:user_id => current_user.id).first.id%>"
         
       
 
