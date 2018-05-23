@@ -40,7 +40,7 @@ require 'sinatra'
   body = params[:Body]
   phone_number = params[:From].to_s
   puts(phone_number)
-  phone_number = phone_number.gsub(/[+1]/,'')
+  phone_number = phone_number.gsub("+1",'')
   puts(phone_number)
   user_id=User.where(:phone_number => phone_number).first.id
   puts(user_id)
