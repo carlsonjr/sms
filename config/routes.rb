@@ -1,4 +1,72 @@
 Rails.application.routes.draw do
+
+
+  # Routes for initial prototype of reflections
+  get("/reflection_setup", {:controller => "reflections", :action => "setup"})
+  post("/submit_questions", {:controller => "reflections", :action => "submit_questions"})
+  get("/new_reflection", {:controller => "reflections", :action => "new_reflection"})
+  post("/submit_reflection", {:controller =>"reflections", :action => "submit_reflection"})
+  get("/print", {:controller => "responses", :action => "print"})
+
+
+
+  # Routes for the Reflection answer resource:
+
+  # CREATE
+  get("/reflection_answers/new", { :controller => "reflection_answers", :action => "new_form" })
+  post("/create_reflection_answer", { :controller => "reflection_answers", :action => "create_row" })
+
+  # READ
+  get("/reflection_answers", { :controller => "reflection_answers", :action => "index" })
+  get("/reflection_answers/:id_to_display", { :controller => "reflection_answers", :action => "show" })
+
+  # UPDATE
+  get("/reflection_answers/:prefill_with_id/edit", { :controller => "reflection_answers", :action => "edit_form" })
+  post("/update_reflection_answer/:id_to_modify", { :controller => "reflection_answers", :action => "update_row" })
+
+  # DELETE
+  get("/delete_reflection_answer/:id_to_remove", { :controller => "reflection_answers", :action => "destroy_row" })
+
+  #------------------------------
+
+  # Routes for the Reflection question resource:
+
+  # CREATE
+  get("/reflection_questions/new", { :controller => "reflection_questions", :action => "new_form" })
+  post("/create_reflection_question", { :controller => "reflection_questions", :action => "create_row" })
+
+  # READ
+  get("/reflection_questions", { :controller => "reflection_questions", :action => "index" })
+  get("/reflection_questions/:id_to_display", { :controller => "reflection_questions", :action => "show" })
+
+  # UPDATE
+  get("/reflection_questions/:prefill_with_id/edit", { :controller => "reflection_questions", :action => "edit_form" })
+  post("/update_reflection_question/:id_to_modify", { :controller => "reflection_questions", :action => "update_row" })
+
+  # DELETE
+  get("/delete_reflection_question/:id_to_remove", { :controller => "reflection_questions", :action => "destroy_row" })
+
+  #------------------------------
+
+  # Routes for the Reflection resource:
+
+  # CREATE
+  get("/reflections/new", { :controller => "reflections", :action => "new_form" })
+  post("/create_reflection", { :controller => "reflections", :action => "create_row" })
+
+  # READ
+  get("/reflections", { :controller => "reflections", :action => "index" })
+  get("/reflections/:id_to_display", { :controller => "reflections", :action => "show" })
+
+  # UPDATE
+  get("/reflections/:prefill_with_id/edit", { :controller => "reflections", :action => "edit_form" })
+  post("/update_reflection/:id_to_modify", { :controller => "reflections", :action => "update_row" })
+
+  # DELETE
+  get("/delete_reflection/:id_to_remove", { :controller => "reflections", :action => "destroy_row" })
+
+  #------------------------------
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root :to => "responses#index"

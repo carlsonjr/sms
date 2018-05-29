@@ -1,0 +1,37 @@
+<!-- Validation failure messages -->
+<% if @reflection.present? %>
+  <% if @reflection.errors.any? %>
+    <% @reflection.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new reflection
+</h1>
+
+<hr>
+
+<form action="/create_reflection" method="post">
+  <!-- Label and input for created_at -->
+  <div class="form-group">
+    <label for="created_at">
+      Created at
+    </label>
+
+    <input type="text" id="created_at" name="created_at" class="form-control" value="<%= @reflection.try(:created_at) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create reflection
+  </button>
+</form>
+
+<hr>
+
+<a href="/reflections">
+  Go back
+</a>

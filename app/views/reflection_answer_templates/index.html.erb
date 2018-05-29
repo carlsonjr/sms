@@ -1,0 +1,74 @@
+<h1>
+  All reflection answers
+</h1>
+
+<a href="/reflection_answers/new">
+  Add a new reflection answer
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Question
+    </th>
+
+    <th>
+      Answer
+    </th>
+
+    <th>
+      Answer text
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @reflection_answers.each do |reflection_answer| %>
+  <tr>
+    <td>
+      <%= reflection_answer.id %>
+    </td>
+
+    <td>
+      <%= reflection_answer.question_id %>
+    </td>
+
+    <td>
+      <%= reflection_answer.answer_id %>
+    </td>
+
+    <td>
+      <%= reflection_answer.answer_text %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(reflection_answer.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(reflection_answer.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/reflection_answers/<%= reflection_answer.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

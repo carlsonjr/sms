@@ -1,0 +1,13 @@
+<% @reflections.each do |reflection| %>
+<div class="card mb-5">
+  <% ReflectionQuestion.where(:user_id => current_user.id).each do |question|%>
+    <h5 class="card-header"><%=question.reflection_question_text%></h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><%= ReflectionAnswer.where(:reflection_id => reflection.id, :reflection_question_id => question.id).first.reflection_answer_text%></li>
+      </ul>
+  <% end %>
+  <div class="card-footer text-muted">
+     <%= time_ago_in_words(reflection.updated_at) %> ago
+  </div>
+</div>
+<%end %>

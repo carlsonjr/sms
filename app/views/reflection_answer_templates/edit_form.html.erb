@@ -1,0 +1,53 @@
+<!-- Validation failure messages -->
+<% if @reflection_answer.errors.any? %>
+  <% @reflection_answer.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit reflection answer #<%= @reflection_answer.id %>
+</h1>
+
+<hr>
+
+<form action="/update_reflection_answer/<%= @reflection_answer.id %>" method="post">
+  <!-- Label and input for question_id -->
+  <div class="form-group">
+    <label for="question_id">
+      Question
+    </label>
+
+    <input type="text" id="question_id" name="question_id" class="form-control" value="<%= @reflection_answer.question_id %>">
+  </div>
+
+  <!-- Label and input for answer_id -->
+  <div class="form-group">
+    <label for="answer_id">
+      Answer
+    </label>
+
+    <input type="text" id="answer_id" name="answer_id" class="form-control" value="<%= @reflection_answer.answer_id %>">
+  </div>
+
+  <!-- Label and input for answer_text -->
+  <div class="form-group">
+    <label for="answer_text">
+      Answer text
+    </label>
+
+    <input type="text" id="answer_text" name="answer_text" class="form-control" value="<%= @reflection_answer.answer_text %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update reflection answer
+  </button>
+</form>
+
+<hr>
+
+<a href="/reflection_answers">
+  Go back
+</a>

@@ -33,4 +33,32 @@ namespace :scheduled_messages do
     end
   end
 
+  task :reflection_prototype => :environment do
+
+# Authenticate with Twilio
+      account_sid = ENV['TWILIO_ACCT_ID']
+      puts account_sid
+      auth_token = ENV['TWILIO_AUTH_TOKEN']
+      puts auth_token
+
+# set up a client to talk to the Twilio REST API
+      @client = Twilio::REST::Client.new(account_sid, auth_token)
+      
+# Loop through users and send message
+    User.where(:enabled => 1).each do |user|
+      phone_number = "+1"+user.phone_number
+      
+    message = @client.messages
+      .create(
+         body: "Hi there! Thank you for trying WDYLT! It's been a little over a week; are you interested in trying out a deeper reflection? Head here to get started."
+         from: ENV['TWILIO_NUMBER'],
+         to: phone_number
+       )
+   
+    puts message.sid
+      
+    end
+  end
+
+
 end

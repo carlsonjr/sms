@@ -1,0 +1,56 @@
+<h1>
+  Reflection answer #<%= @reflection_answer.id %> details
+</h1>
+
+<a href="/reflection_answers/<%= @reflection_answer.id %>/edit">
+  Edit reflection answer
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Question
+  </dt>
+  <dd>
+    <%= @reflection_answer.question_id %>
+  </dd>
+
+  <dt>
+    Answer
+  </dt>
+  <dd>
+    <%= @reflection_answer.answer_id %>
+  </dd>
+
+  <dt>
+    Answer text
+  </dt>
+  <dd>
+    <%= @reflection_answer.answer_text %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@reflection_answer.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@reflection_answer.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_reflection_answer/<%= @reflection_answer.id %>">
+  Delete reflection answer
+</a>
+
+<hr>
+
+<a href="/reflection_answers">
+  Go back
+</a>
