@@ -6,7 +6,7 @@ class ReflectionsController < ApplicationController
     
   end
   
-  def new_reflection
+  def submit_questions
     q1 = params[:question_1]
     q2 = params[:question_2]
     q3 = params[:question_3]
@@ -30,6 +30,9 @@ class ReflectionsController < ApplicationController
     rq3.save
     
     @questions = ReflectionQuestion.where(:user_id => current_user.id)
+      date_to = DateTime.now
+      date_from = DateTime.now - 10
+    @responses = Response.where(:user_id => current_user.id, :created_at => date_from.beginning_of_day..date_to.end_of_day).all
     puts @questions
     render("reflections_prototype/new_reflection.html.erb")  
 

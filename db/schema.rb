@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180529040553) do
+ActiveRecord::Schema.define(version: 20180529134626) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -68,8 +68,10 @@ ActiveRecord::Schema.define(version: 20180529040553) do
 
   create_table "reflections", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "reflection_interval"
+    t.date     "last_reflection_on"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "responses", force: :cascade do |t|
