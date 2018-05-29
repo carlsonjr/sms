@@ -1,16 +1,11 @@
 
 
 
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div class="jumbotron">
-              
-                  <p class="font-weight-bold lead">Take a breath and reflect.</p>
-                  
-                  <hr class="my-4">
-              <p>Here are your questions. Cheers.</p>
-            
-        
+<div class="row">
+    <div class="col-6 px-3 py-3">
+        <div class="jumbotron bg-primary text-light">
+                  <p class="font-weight-light" style="font-family: 'Roboto Slab', serif;font-size: 24px;">Take a breath and reflect. Here are your questions. Cheers.</p>
+        </div>
         
         
         <form action="/submit_reflection" method="post">
@@ -25,8 +20,30 @@
             
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+    </div>  <!---Column -->
+    <div class="col-6 px-3 py-3">
+        <div class="jumbotron bg-primary text-light">
+                  <p class="font-weight-light" style="font-family: 'Roboto Slab', serif;font-size: 24px;">Here's what you've learned since your last reflection.</p>
         </div>
         
-        
-    </div>
-</div>
+        <% @responses.each do |response| %>
+       <div class="card p-3">
+        <% t = response.created_at.in_time_zone(current_user.time_zone) %>
+           <small class="card-text text-right"><%=t.strftime("%A, %B %y, %Y: %l:%M %p %Z")%></small>
+         <p class="card-text">
+           <p><%=response.response_text%></p>
+          <p class="card-text">
+         
+          <small class="text-muted" style="font-size: small">
+            <a href="/responses/<%= response.id %>/edit">Edit</a>
+          </small>
+          </p>
+         </blockquote>
+      </div>
+      <% end %>
+     </div>
+
+
+
+
+</div> <!---Row---%>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post("/submit_questions", {:controller => "reflections", :action => "submit_questions"})
   get("/new_reflection", {:controller => "reflections", :action => "new_reflection"})
   post("/submit_reflection", {:controller =>"reflections", :action => "submit_reflection"})
-  
+  get("/print", {:controller => "responses", :action => "print"})
 
 
 

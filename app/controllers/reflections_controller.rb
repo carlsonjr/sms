@@ -37,7 +37,11 @@ class ReflectionsController < ApplicationController
   
   def new_reflection
       @questions = ReflectionQuestion.where(:user_id => current_user.id)
-    puts @questions
+      date_to = DateTime.now
+      date_from = DateTime.now - 10
+      
+      @responses = Response.where(:user_id => current_user.id, :created_at => date_from.beginning_of_day..date_to.end_of_day).all
+    
     render("reflections_prototype/new_reflection.html.erb")
   
   end

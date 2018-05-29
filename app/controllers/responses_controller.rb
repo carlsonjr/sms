@@ -107,4 +107,19 @@ class ResponsesController < ApplicationController
       redirect_back(:fallback_location => "/", :notice => "Response deleted.")
     end
   end
+  
+  
+  def print
+    
+    
+    @responses = Response.where(:user_id => current_user.id).all.order(created_at: :desc)
+    date_to  = DateTime.now.to_date
+    date_from    = @responses.first.created_at.to_date
+    date_range = date_from..date_to
+    @dates_array = (date_range).map(&:to_s)
+    puts @dates_array
+    render("/responses/print.html.erb")
+    
+    
+  end
 end
