@@ -15,4 +15,4 @@
 /vendor/bundle
 !/vendor/assets/
 
-latest.dump
+latest.dump*
