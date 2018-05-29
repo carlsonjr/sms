@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+
+
+  # Routes for initial prototype of reflections
+  get("/reflection_setup", {:controller => "reflections", :action => "setup"})
+  post("/submit_questions", {:controller => "reflections", :action => "submit_questions"})
+  get("/new_reflection", {:controller => "reflections", :action => "new_reflection"})
+  post("/submit_reflection", {:controller =>"reflections", :action => "submit_reflection"})
+  
+
+
+
   # Routes for the Reflection answer resource:
 
   # CREATE

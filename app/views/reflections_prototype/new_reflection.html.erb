@@ -1,0 +1,32 @@
+
+
+
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div class="jumbotron">
+              
+                  <p class="font-weight-bold lead">Take a breath and reflect.</p>
+                  
+                  <hr class="my-4">
+              <p>Here are your questions. Cheers.</p>
+            
+        
+        
+        
+        <form action="/submit_reflection" method="post">
+          
+          <% @questions.each.with_index do |question, index| %>
+            <div class="form-group">
+            <p class="font-weight-bold"><%=question.reflection_question_text%></p>  
+            <input type="hidden" name="question_id_<%=index%>" value="<%=question.id%>">
+            <textarea class="form-control" name="answer_<%=index%>" rows="3"></textarea>
+          </div>
+          <% end %>
+            
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+        </div>
+        
+        
+    </div>
+</div>

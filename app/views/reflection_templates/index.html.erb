@@ -1,58 +1,13 @@
-<h1>
-  All reflections
-</h1>
-
-<a href="/reflections/new">
-  Add a new reflection
-</a>
-
-<hr>
-
-<table class="table">
-  <tr>
-    <th>
-      ID
-    </th>
-
-    <th>
-      Created at
-    </th>
-
-    <th>
-      Created at
-    </th>
-
-    <th>
-      Updated at
-    </th>
-
-    <th>
-    </th>
-  </tr>
-
-  <% @reflections.each do |reflection| %>
-  <tr>
-    <td>
-      <%= reflection.id %>
-    </td>
-
-    <td>
-      <%= reflection.created_at %>
-    </td>
-
-    <td>
-      <%= time_ago_in_words(reflection.created_at) %> ago
-    </td>
-
-    <td>
-      <%= time_ago_in_words(reflection.updated_at) %> ago
-    </td>
-
-    <td>
-      <a href="/reflections/<%= reflection.id %>">
-        Show details
-      </a>
-    </td>
-  </tr>
+<% @reflections.each do |reflection| %>
+<div class="card mb-5">
+  <% ReflectionQuestion.where(:user_id => current_user.id).each do |question|%>
+    <h5 class="card-header"><%=question.reflection_question_text%></h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><%= ReflectionAnswer.where(:reflection_id => reflection.id, :reflection_question_id => question.id).first.reflection_answer_text%></li>
+      </ul>
   <% end %>
-</table>
+  <div class="card-footer text-muted">
+     <%= time_ago_in_words(reflection.updated_at) %> ago
+  </div>
+</div>
+<%end %>
