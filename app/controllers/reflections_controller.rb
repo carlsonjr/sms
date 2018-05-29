@@ -2,7 +2,11 @@ class ReflectionsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
   def setup
+    if ReflectionQuestion.where(:user_id => current_user.id).count > 0
+      redirect_to("/new_reflection")
+    else
     render("/reflections_prototype/setup.html.erb")
+     end
     
   end
   
