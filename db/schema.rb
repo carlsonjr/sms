@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518142618) do
+ActiveRecord::Schema.define(version: 20180522161058) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -49,6 +49,28 @@ ActiveRecord::Schema.define(version: 20180518142618) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "responses_count"
+  end
+
+  create_table "reflection_answers", force: :cascade do |t|
+    t.integer  "reflection_question_id"
+    t.integer  "reflection_id"
+    t.string   "reflection_answer_text"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "reflection_questions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "reflection_id"
+    t.string   "reflection_question_text"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "reflections", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "responses", force: :cascade do |t|

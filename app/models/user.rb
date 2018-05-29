@@ -6,8 +6,17 @@ class User < ApplicationRecord
 
   has_many   :questions,
              :dependent => :destroy
+             
+  has_many :reflections,
+             :dependent => :destroy
 
+  has_many :reflection_questions,
+             :dependent => :destroy
+             
   # Indirect associations
+
+  has_many :reflection_answers, :through => :reflection_questions
+
 
   # Validations
   

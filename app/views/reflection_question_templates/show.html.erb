@@ -1,0 +1,49 @@
+<h1>
+  Reflection question #<%= @reflection_question.id %> details
+</h1>
+
+<a href="/reflection_questions/<%= @reflection_question.id %>/edit">
+  Edit reflection question
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    User
+  </dt>
+  <dd>
+    <%= @reflection_question.user_id %>
+  </dd>
+
+  <dt>
+    Question text
+  </dt>
+  <dd>
+    <%= @reflection_question.question_text %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@reflection_question.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@reflection_question.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_reflection_question/<%= @reflection_question.id %>">
+  Delete reflection question
+</a>
+
+<hr>
+
+<a href="/reflection_questions">
+  Go back
+</a>
