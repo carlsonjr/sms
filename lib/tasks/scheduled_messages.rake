@@ -50,7 +50,7 @@ namespace :scheduled_messages do
       
     message = @client.messages
       .create(
-         body: "Hi there! Thank you for trying WDYLT! It's been a little over a week; are you interested in trying out a deeper reflection? Head here to get started."
+         body: "Hi there! Thank you for trying WDYLT! It's been a little over a week; are you interested in trying out a deeper reflection? Head here to get started.",
          from: ENV['TWILIO_NUMBER'],
          to: phone_number
        )
