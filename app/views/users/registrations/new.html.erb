@@ -50,7 +50,7 @@
             <%= f.label :time_zone, class: "col-sm-2 control-label" %>
             <div class="col-sm-10">
               <% identifiers = ActiveSupport::TimeZone.all %>
-               <%= f.collection_select :time_zone, identifiers, :tzinfo, :name %>
+               <%= f.collection_select :time_zone, identifiers, :name, :name %>
             </div>
           </div>
           
