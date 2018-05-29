@@ -7,17 +7,14 @@ gem 'dotenv'
 gem 'dotenv-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-group :development do
-  gem "sqlite3"
-end
+gem "pg"
+gem 'twilio-ruby', '~> 5.9.0'
+gem 'sinatra'
 
 group :production do
-  gem "pg"
   gem "rails_12factor"
-  gem 'twilio-ruby', '~> 5.9.0'
-
-  gem 'sinatra'
 end
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

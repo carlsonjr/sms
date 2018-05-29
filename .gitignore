@@ -14,3 +14,5 @@
 /vendor/cache/*
 /vendor/bundle
 !/vendor/assets/
+
+latest.dump
