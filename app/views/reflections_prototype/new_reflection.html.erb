@@ -28,8 +28,6 @@
         
         <% @responses.each do |response| %>
        <div class="card p-3">
-        <% t = response.created_at.in_time_zone(current_user.time_zone) %>
-           <small class="card-text text-right"><%=t.strftime("%A, %B %y, %Y: %l:%M %p %Z")%></small>
          <p class="card-text">
            <p><%=response.response_text%></p>
           <p class="card-text">

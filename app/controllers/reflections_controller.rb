@@ -52,6 +52,10 @@ class ReflectionsController < ApplicationController
   def submit_reflection
     r = Reflection.new
     r.user_id = current_user.id
+    r.reflection_interval = 7
+    if r.last_reflection_on == nil
+      r.last_reflection_on = current_user.created_at.to_date
+    end
     r.save
     
     q0 = params[:question_id_0]
