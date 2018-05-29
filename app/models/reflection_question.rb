@@ -1,7 +1,7 @@
 class ReflectionQuestion < ApplicationRecord
 #Associations
     belongs_to :user
-    has_many :reflection_answers
+    has_many :reflection_answers, :dependent => :destroy
     
     
 #Validations
