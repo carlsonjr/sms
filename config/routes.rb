@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get("/new_reflection", {:controller => "reflections", :action => "new_reflection"})
   post("/submit_reflection", {:controller =>"reflections", :action => "submit_reflection"})
   get("/print", {:controller => "responses", :action => "print"})
-
+  get("/reflections/:prefill_with_id/edit", { :controller => "reflections", :action => "edit_form" })
+  post("/update_reflection/:id_to_modify", { :controller => "reflections", :action => "update_row" })
 
 
   # Routes for the Reflection answer resource:
@@ -59,8 +60,7 @@ Rails.application.routes.draw do
   get("/reflections/:id_to_display", { :controller => "reflections", :action => "show" })
 
   # UPDATE
-  get("/reflections/:prefill_with_id/edit", { :controller => "reflections", :action => "edit_form" })
-  post("/update_reflection/:id_to_modify", { :controller => "reflections", :action => "update_row" })
+  
 
   # DELETE
   get("/delete_reflection/:id_to_remove", { :controller => "reflections", :action => "destroy_row" })

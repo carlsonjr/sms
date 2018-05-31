@@ -8,13 +8,13 @@
         </div>
         
         
-        <form action="/submit_reflection" method="post">
+        <form action="/update_reflection/<%=@reflection.id%>" method="post">
           
           <% @questions.each.with_index do |question, index| %>
             <div class="form-group">
             <p class="font-weight-bold"><%=question.reflection_question_text%></p>  
-            <input type="hidden" name="question_id_<%=index%>" value="<%=question.id%>">
-            <textarea class="form-control" name="answer_<%=index%>" rows="3"></textarea>
+            <input type="hidden" name="answer_id_<%=index%>" value="<%=ReflectionAnswer.where(:reflection_id => @reflection.id, :reflection_question_id => question.id).first.id%>">
+            <textarea class="form-control" name="answer_text_<%=index%>" rows="3"><%=ReflectionAnswer.where(:reflection_id => @reflection.id, :reflection_question_id => question.id).first.reflection_answer_text%></textarea>
           </div>
           <% end %>
             
@@ -25,7 +25,7 @@
         <div class="jumbotron bg-primary text-light">
                   <p class="font-weight-light" style="font-family: 'Roboto Slab', serif;font-size: 24px;">FYI: Here's what you've learned since your last reflection.</p>
         </div>
-        <% if @responses.count != 0%>
+        
         <% @responses.each do |response| %>
        <div class="card p-3">
          <p class="card-text">
@@ -40,7 +40,6 @@
           </p>
          </blockquote>
       </div>
-      <% end %>
       <% end %>
      </div>
 

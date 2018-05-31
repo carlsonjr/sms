@@ -1,17 +1,56 @@
-<%=current_user.last_reflection_on%>
-<%=DateTime.now.to_date%>
+<div class="row">
+  <div class="col sm-12">
+    
+    <% if @range == 0 %>
+    
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <strong>Hi there!</strong> You already reflected today; go you!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <% elsif @range <=7 %>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <strong>Hi there!</strong> It's been <%= @range %> days since your last reflection.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>    
+    <% else %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>It's go time</strong> It's been <%= @range %> days since your last reflection. Go ahead and <a href="/new_reflection">create a reflection</a> now!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>    
+    
+    <% end %>
+    
+  </div>
+</div>
 
+
+<div class="row">
+  <div class="col sm-12">
+  
+
+<div class="mb-5">
 <% @reflections.each do |reflection| %>
-  <h1 class="display-4 mb-2" style="font-size:24px"><%= reflection.created_at.in_time_zone(current_user.time_zone).strftime("%A, %B %-d, %Y") %></h1>
+  <h1 class="display-4 mb-2" style="font-size:2rem"><%= reflection.created_at.in_time_zone(current_user.time_zone).strftime("%A, %B %-d, %Y") %></h1>
   <div class="border-left ml-5 border-primary" style="border-width:thick;">
     
   
     <% ReflectionQuestion.where(:user_id => current_user.id).each do |question|%>
       <% if ReflectionAnswer.where(:reflection_id => reflection.id, :reflection_question_id => question.id).count != 0 %>
-      <p class="ml-5 font-weight-light text-primary h6" style="font-family: 'Roboto Slab', serif"> <%=question.reflection_question_text%></p>
+      <p class="ml-5 font-weight-light text-primary h6" style="font-family: 'Roboto Slab', serif; font-size:1.2rem"> <%=question.reflection_question_text%></p>
       <p class="ml-5 font-weight-light"><%= ReflectionAnswer.where(:reflection_id => reflection.id, :reflection_question_id => question.id).first.reflection_answer_text%></p>
     <%end%>
     
     <%end%>
+        <span class="ml-5"><a class="btn btn-outline-primary" style="font-size:0.75rem" href="/reflections/<%=reflection.id%>/edit" role="button">Edit</a></span>
   </div>  
 <%end %>
+</div>
+
+</div>
+</div>

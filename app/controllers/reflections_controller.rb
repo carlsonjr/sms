@@ -67,10 +67,12 @@ class ReflectionsController < ApplicationController
     r.user_id = current_user.id
     if r.previous_reflection_date == nil
       r.previous_reflection_date = current_user.created_at.to_date
+    else
+      r.previous_reflection_date = User.reflections.last.created_at.to_date
     end
     r.save
     
-    current_user.last_reflection_on = r.created_at.to_date
+    current_user.last_reflection_on = r.created_at.to_date.in_time_zone(current_user.time_zone)
     current_user.save(validate: false)
     
     q0 = params[:question_id_0]
@@ -111,6 +113,11 @@ class ReflectionsController < ApplicationController
   
 
   def index
+    @last = current_user.last_reflection_on
+    @now = DateTime.now.in_time_zone(current_user.time_zone).to_date
+    @range = @now-@last
+    @range = @range.to_int
+    
     
     @reflections = Reflection.where(:user_id => current_user.id).order(created_at: :desc)
     if @reflections.count == 0
@@ -120,15 +127,71 @@ class ReflectionsController < ApplicationController
     end
   end
 
-  def show
-    @reflection = Reflection.find(params.fetch("id_to_display"))
 
-    render("reflection_templates/show.html.erb")
+  def edit_form
+    @reflection = Reflection.find(params.fetch("prefill_with_id"))
+    @questions = current_user.reflection_questions
+      
+      
+      date_to = @reflection.created_at.to_date
+      if @reflection.previous_reflection_date == nil
+      date_from = current_user.created_at.to_date
+      else
+      date_from = @reflection.previous_reflection_date
+      end
+      puts date_from
+    
+    
+    @responses = Response.where(:user_id => current_user.id, :created_at => date_from.beginning_of_day..date_to.end_of_day).all
+    render("reflections_prototype/update_reflection.html.erb")
   end
 
-  def new_form
-    render("reflection_templates/new_form.html.erb")
+  def update_row
+    @reflection = Reflection.find(params.fetch("id_to_modify"))
+
+    a_id_0 = params[:answer_id_0]
+    a_0 = params[:answer_text_0]
+    a_id_1 = params[:answer_id_1]
+    a_1 = params[:answer_text_1]
+    a_id_2 = params[:answer_id_2]
+    a_2 = params[:answer_text_2]
+    
+    answer0 = ReflectionAnswer.find(a_id_0)
+    answer0.reflection_answer_text = a_0
+
+    answer1 = ReflectionAnswer.find(a_id_1)
+    answer1.reflection_answer_text = a_1
+    
+    answer2 = ReflectionAnswer.find(a_id_2)
+    answer2.reflection_answer_text = a_2
+    
+    @reflections = Reflection.where(:user_id => current_user.id)
+
+
+    if answer0.valid? && answer1.valid? && answer2.valid?
+      answer0.save
+      answer1.save          
+      answer2.save
+      
+      redirect_to("/reflections", :notice => "Edit successful!")
+    else
+      render("reflections_prototype/update_reflection.html.erb")
+    end
   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   def create_row
     @reflection = Reflection.new
@@ -144,25 +207,36 @@ class ReflectionsController < ApplicationController
     end
   end
 
-  def edit_form
-    @reflection = Reflection.find(params.fetch("prefill_with_id"))
 
-    render("reflection_templates/edit_form.html.erb")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  def show
+    @reflection = Reflection.find(params.fetch("id_to_display"))
+
+    render("reflection_templates/show.html.erb")
   end
 
-  def update_row
-    @reflection = Reflection.find(params.fetch("id_to_modify"))
-
-    @reflection.created_at = params.fetch("created_at")
-
-    if @reflection.valid?
-      @reflection.save
-
-      redirect_to("/reflections/#{@reflection.id}", :notice => "Reflection updated successfully.")
-    else
-      render("reflection_templates/edit_form.html.erb")
-    end
+  def new_form
+    render("reflection_templates/new_form.html.erb")
   end
+
+
+
+
 
   def destroy_row
     @reflection = Reflection.find(params.fetch("id_to_remove"))
