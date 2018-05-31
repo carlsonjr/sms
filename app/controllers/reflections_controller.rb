@@ -54,7 +54,7 @@ class ReflectionsController < ApplicationController
       
       date_to = DateTime.now
       if current_user.last_reflection_on == nil
-      date_from = current_user.created_at.to_datelast_reflection_onlast_reflection_on
+      date_from = current_user.created_at.to_datelast_reflection_on
       else
       date_from = current_user.last_reflection_on
       end
@@ -116,6 +116,7 @@ class ReflectionsController < ApplicationController
   
 
   def index
+    
     @last = current_user.last_reflection_on
     @now = DateTime.now.in_time_zone(current_user.time_zone).to_date
     @range = @now - @last
