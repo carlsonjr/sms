@@ -17,7 +17,23 @@ task :add_last_reflection => :environment do
     end
         
 end
+
+
+task :add_last_reflection_on => :environment do
+   User.all.each do |user|
+       if user.reflections.count > 0
+          user.last_reflection_on = user.reflections.order(id::desc).created_at.in_time_zone(user.time_zone).to_date 
+       else
+          user.last_reflection_on = nil
+       end
+       
+       user.save
+       
+       
+   end
+    
 end
 
 
 
+end

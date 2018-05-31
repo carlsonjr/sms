@@ -54,7 +54,7 @@ class ReflectionsController < ApplicationController
       
       date_to = DateTime.now
       if current_user.last_reflection_on == nil
-      date_from = current_user.created_at.to_date
+      date_from = current_user.created_at.to_datelast_reflection_onlast_reflection_on
       else
       date_from = current_user.last_reflection_on
       end
@@ -75,7 +75,7 @@ class ReflectionsController < ApplicationController
     end
     r.save
     
-    current_user.last_reflection_on = r.created_at.to_date.in_time_zone(current_user.time_zone)
+    current_user.last_reflection_on = r.created_at.in_time_zone(current_user.time_zone).to_date
     current_user.save(validate: false)
     
     q0 = params[:question_id_0]
