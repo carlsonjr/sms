@@ -1,15 +1,17 @@
+<%=current_user.last_reflection_on%>
+<%=DateTime.now.to_date%>
+
 <% @reflections.each do |reflection| %>
-<div class="card mb-5">
-  <% ReflectionQuestion.where(:user_id => current_user.id).each do |question|%>
-    <% if ReflectionAnswer.where(:reflection_id => reflection.id, :reflection_question_id => question.id).count != 0 %>
-    <h5 class="card-header"><%=question.reflection_question_text%></h5>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"><%= ReflectionAnswer.where(:reflection_id => reflection.id, :reflection_question_id => question.id).first.reflection_answer_text%></li>
-      </ul>
-      <%end%>
-  <% end %>
-  <div class="card-footer text-muted">
-     <%= time_ago_in_words(reflection.updated_at) %> ago
-  </div>
-</div>
+  <h1 class="display-4 mb-2" style="font-size:24px"><%= reflection.created_at.in_time_zone(current_user.time_zone).strftime("%A, %B %-d, %Y") %></h1>
+  <div class="border-left ml-5 border-primary" style="border-width:thick;">
+    
+  
+    <% ReflectionQuestion.where(:user_id => current_user.id).each do |question|%>
+      <% if ReflectionAnswer.where(:reflection_id => reflection.id, :reflection_question_id => question.id).count != 0 %>
+      <p class="ml-5 font-weight-light text-primary h6" style="font-family: 'Roboto Slab', serif"> <%=question.reflection_question_text%></p>
+      <p class="ml-5 font-weight-light"><%= ReflectionAnswer.where(:reflection_id => reflection.id, :reflection_question_id => question.id).first.reflection_answer_text%></p>
+    <%end%>
+    
+    <%end%>
+  </div>  
 <%end %>
