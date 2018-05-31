@@ -1,15 +1,23 @@
-# namespace :migration_helper do
+namespace :migration_helper do
 
-# task :add_last_reflection => :environment do
+task :add_last_reflection => :environment do
     
-#     User.all.each do |user|
-#     user.reflections.each do |reflection|
-#         previous_reflection = Reflection.where("created_at < ? AND user_id = ?", reflection.created_at, user.id).first
-#         reflection.previous_reflection_date = previous_reflection.created_at
+    User.all.each do |user|
+        @reflections_set = user.reflections.all.order(id: :desc)
+        @reflections_set.each do |reflection|
+           helper = @reflections_set.where("created_at < ?", reflection.created_at).count
+           if helper >0 
+                p = @reflections_set.where("created_at < ?", reflection.created_at).first
+                reflection.previous_reflection_date = p.created_at
+           else
+                reflection.previous_reflection_date = user.created_at
+           end
+           reflection.save
+        end
+    end
         
-    
-    
-#     end
-    
-# end
-# end
+end
+end
+
+
+

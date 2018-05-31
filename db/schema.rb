@@ -74,8 +74,7 @@ ActiveRecord::Schema.define(version: 20180531150130) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.datetime "previous_reflection_date"
-  end
-
+  end 
   create_table "responses", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "question_id"

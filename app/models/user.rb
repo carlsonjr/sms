@@ -22,6 +22,7 @@ class User < ApplicationRecord
   
   
   validates :time_zone, presence: true
+  validates :last_reflection_on, presence: true
   validates :phone_number, uniqueness: true
   validates :phone_number, length: {:is => 10}
   

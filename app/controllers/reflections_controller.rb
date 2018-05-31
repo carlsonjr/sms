@@ -44,6 +44,9 @@ class ReflectionsController < ApplicationController
       puts date_from
       @responses = Response.where(:user_id => current_user.id, :created_at => date_from.beginning_of_day..date_to.end_of_day).all
   
+  redirect_to("/new_reflection")
+  
+    
   end
   
   def new_reflection
@@ -66,9 +69,9 @@ class ReflectionsController < ApplicationController
     r = Reflection.new
     r.user_id = current_user.id
     if r.previous_reflection_date == nil
-      r.previous_reflection_date = current_user.created_at.to_date
+      r.previous_reflection_date = current_user.created_at
     else
-      r.previous_reflection_date = User.reflections.last.created_at.to_date
+      r.previous_reflection_date = User.reflections.last.created_at
     end
     r.save
     
@@ -107,7 +110,7 @@ class ReflectionsController < ApplicationController
     end
     
     @reflections = Reflection.where(:user_id => current_user.id)
-    render("/reflection_templates/index.html.erb")
+    redirect_to("/reflections")
   end
   
   
@@ -115,7 +118,7 @@ class ReflectionsController < ApplicationController
   def index
     @last = current_user.last_reflection_on
     @now = DateTime.now.in_time_zone(current_user.time_zone).to_date
-    @range = @now-@last
+    @range = @now - @last
     @range = @range.to_int
     
     
@@ -135,7 +138,7 @@ class ReflectionsController < ApplicationController
       
       date_to = @reflection.created_at.to_date
       if @reflection.previous_reflection_date == nil
-      date_from = current_user.created_at.to_date
+      date_from = current_user.created_at
       else
       date_from = @reflection.previous_reflection_date
       end

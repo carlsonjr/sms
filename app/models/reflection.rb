@@ -7,7 +7,7 @@ class Reflection < ApplicationRecord
     
 #Validations
     validates :user_id, presence: true
-
+    validates :previous_reflection_date, presence: true
 
 
 end
