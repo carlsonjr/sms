@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180529134626) do
+ActiveRecord::Schema.define(version: 20180531023540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,10 +71,9 @@ ActiveRecord::Schema.define(version: 20180529134626) do
 
   create_table "reflections", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "reflection_interval"
-    t.date     "last_reflection_on"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.date     "previous_reflection_date"
   end
 
   create_table "responses", force: :cascade do |t|
@@ -104,6 +103,8 @@ ActiveRecord::Schema.define(version: 20180529134626) do
     t.integer  "responses_count"
     t.binary   "enabled"
     t.string   "time_zone"
+    t.integer  "reflection_interval"
+    t.date     "last_reflection_on"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

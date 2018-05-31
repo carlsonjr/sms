@@ -1,0 +1,5 @@
+class RemoveReflectionIntervalFromReflections < ActiveRecord::Migration[5.0]
+  def change
+    remove_column :reflections, :reflection_interval, :integer
+  end
+end
