@@ -9,7 +9,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "pg"
 gem 'twilio-ruby', '~> 5.9.0'
-gem 'sinatra'
+gem 'sinatra', '~> 2.0.2'
 
 group :production do
   gem "rails_12factor"
