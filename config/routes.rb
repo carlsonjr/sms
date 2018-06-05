@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  get("/landing", {:controller => "landing", :action => "landing"})
   # Routes for initial prototype of reflections
   get("/reflection_setup", {:controller => "reflections", :action => "setup"})
   post("/submit_questions", {:controller => "reflections", :action => "submit_questions"})

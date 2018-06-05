@@ -249,4 +249,8 @@ class ReflectionsController < ApplicationController
 
     redirect_to("/reflections", :notice => "Reflection deleted successfully.")
   end
+  
+
+  
+  
 end
