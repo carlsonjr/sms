@@ -10,6 +10,34 @@
       <div class="jumbotron bg-primary text-light">
   <h1 class="display-4"><%=Question.where(:user_id => current_user.id).first.question%> 📚</h1>
   <p class="lead"></p>
+  <form action="/create_response" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <!-- Label and input for question_id -->
+      <input type ="hidden" name="question_id" value="<%= Question.where(:user_id => current_user.id).first.id%>">
+
+      <!-- Label and input for time -->
+
+        <input type="hidden" id="time" name="time" placeholder="Time" class="form-control" value="<%= DateTime.now %>">
+
+      <!-- Label and input for response_text -->
+      <div class="form-group">
+        <label for="response_text" class="control-label">
+          <h1><%=Question.where(:user_id => current_user.id).first.question%></h1>
+        </label>
+
+        <input type="text" id="response_text" name="response_text" placeholder="Response text" class="form-control">
+      </div>
+
+      <button class="btn btn-success">
+        Create Response
+      </button>
+    </form>
+  
   <!--<hr class="my-4 bg-light">-->
   <!--<div class="w-25">-->
   <!--<table class="table table-sm text-center table-borderless text-light">-->
