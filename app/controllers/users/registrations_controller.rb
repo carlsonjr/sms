@@ -30,10 +30,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       require 'dotenv-rails'
       # Authenticate with Twilio
             account_sid = ENV['TWILIO_ACCT_ID']
-            puts account_sid
             auth_token = ENV['TWILIO_AUTH_TOKEN']
-            puts auth_token
-      
+
       # set up a client to talk to the Twilio REST API
             @client = Twilio::REST::Client.new(account_sid, auth_token)
             
@@ -49,19 +47,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
              )
          
           puts message.sid
-          
-      
-          message = @client.messages
-            .create(
-               body: question,
-               from: ENV['TWILIO_NUMBER'],
-               to: phone_number
-             )
          
-          puts message.sid
-              
-    
-    
     end
   end
 
