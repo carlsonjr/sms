@@ -16,7 +16,9 @@ class ResponsesController < ApplicationController
       question.save
     end
     
-    @responses = @q.result(:distinct => true).includes(:user, :question).order(created_at: :desc).page(params[:page]).per(10)
+    @responses = @q.result(:distinct => true).includes(:user, :question).order(created_at: :desc).page(params[:page])
+    
+    # 
     if @responses.count >0 
       
     render("responses/index.html.erb")
