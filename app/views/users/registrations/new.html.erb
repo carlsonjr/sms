@@ -19,7 +19,8 @@
             <%= f.label :email, class: "control-label" %>
               <%= f.email_field :email, autofocus: true, class: "form-control" %>
           </div>
-          
+        </div>
+        <div class="form-row mb-3">
           <div class="col">
             <%= f.label :time_zone, class: "control-label" %>
               <% identifiers = ActiveSupport::TimeZone.all %>
@@ -58,13 +59,16 @@
     <div class="jumbotron">
       <p class="h2">What do you want to be asked?</p>
                   <p class="lead">
-                  Every day, you'll receive a text message to prompt you to pause, reflect, and internalize your growth. Take a minute to choose which question is best for you.</p>
-          <div class="col">
-            <%= f.label :question_text, class: "control-label" %>
-              <% identifiers = ActiveSupport::TimeZone.all %>
-               <%= f.collection_select :question_text, identifiers, :name, :name, {}, {class: "form-control-lg"} %>
+                  Every day, you'll receive a text message to prompt you to pause, reflect, and internalize your growth. Take a minute to choose the best question for you.</p>
+          <div class="form-row">
+            <div class="col">
+                <select name="question_text" class="form-control form-control-lg">
+                  <option value="What did you learn today?" selected="selected">What did you learn today?</option>
+                  <option value="What do you want to remember from today?">What do you want to remember from today?</option>
+                  <option value="What are you grateful for today?">What are you grateful for today?</option>
+                </select>
+            </div>
           </div>
-      
       
     </div>
   </div>
@@ -72,8 +76,6 @@
 <div class="row">
   <div class="col-12">
       <%= f.submit "Sign up", class: "btn btn-success btn-block btn-lg btn-block" %>
-      <%= render "devise/shared/links" %>
-
   </div>
 </div>    
   

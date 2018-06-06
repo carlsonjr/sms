@@ -14,13 +14,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super do |user|
       
       
-      # Generate default question for new user
-      if Question.where(:user_id => user.id).count == 0
+      # Create question
       question = Question.new
       question.user_id = user.id
+      question.question = params[:question_text]
       question.save
-      end
-    
+      
       
       
       
@@ -37,8 +36,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
             
       # Loop through users and send message
           phone_number = "+1"+user.phone_number
-            question = Question.where(:user_id => user.id).first.question
-      
+
           message = @client.messages
             .create(
                body: "Welcome to WDYLT! Every day, I'll send you a quick message to prompt you to reflect. Just reply to these messages and I'll handle the rest.",
