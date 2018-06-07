@@ -39,12 +39,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
           message = @client.messages
             .create(
-               body: "Welcome to WDYLT! Every day, I'll send you a quick message to prompt you to reflect. Just reply to these messages and I'll handle the rest.",
+               body: "Welcome to WDYLT! Here's how this works. Every day, I'll send you a quick message to prompt you to reflect. Anything you send me, I'll record. So, just reply to these messages and I'll help you reflect.",
                from: ENV['TWILIO_NUMBER'],
                to: phone_number
              )
          
           puts message.sid
+          
+       
          
     end
   end
