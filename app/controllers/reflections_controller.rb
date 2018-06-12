@@ -54,7 +54,7 @@ class ReflectionsController < ApplicationController
       
       date_to = DateTime.now
       if current_user.last_reflection_on == nil
-      date_from = current_user.created_at.to_datelast_reflection_on
+      date_from = current_user.created_at.to_date
       else
       date_from = current_user.last_reflection_on
       end
