@@ -1,0 +1,11 @@
+Congrats on another week of growth! Take 10-20 minutes and summarize your learnings from the week, by taking a moment to reflect now --> http://www.get-wdylt.com/new_reflection
+
+Here's everything you've learned since the last time you reflected:
+
+<% if @user_responses.count != 0%>
+<% @user_responses.each do |response| %>
+    <%=response.response_text%>
+    
+<% end %>
+<% end %>
+

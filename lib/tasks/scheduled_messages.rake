@@ -61,4 +61,23 @@ namespace :scheduled_messages do
   end
 
 
+
+task :email_reflection => :environment do
+
+    # User.where(:enabled => 1).each do |user|
+
+        user = User.find(5)
+        date_to = DateTime.now
+        if user.last_reflection_on == nil
+        date_from = user.created_at.to_date
+        else
+        date_from = user.last_reflection_on
+        end
+        @user_responses = Response.where(:user_id => user.id, :created_at => date_from.beginning_of_day..date_to.end_of_day).all
+        @user = user
+# end
+    
+    ReflectionMailer.weekly_reflection
+end
+
 end
