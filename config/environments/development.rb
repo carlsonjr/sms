@@ -29,11 +29,12 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   
   # Email settings
+  
   config.action_mailer.default_url_options = { :host => 'wdylt-production.herokuapp.com'}
   
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
   
   config.action_mailer.smtp_settings = {
@@ -42,7 +43,7 @@ Rails.application.configure do
     :port => 587,
     :domain => ENV.fetch('MAILGUN_DOMAIN'),
     :user_name => ENV.fetch('MAILGUN_USERNAME'),
-    :password => ENV.fetch('MAILGUN_PASSWORD')
+    :password => ENV.fetch('MAILGUN_PASSWORD'),
     }
 
 
