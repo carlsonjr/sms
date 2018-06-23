@@ -9,8 +9,8 @@ class ReflectionMailer < ApplicationMailer
   default from: 'reflect@get-wdylt.com'
   
   
-  def weekly_reflection
-    @user = User.find(5)
+  def weekly_reflection(user)
+    @user = user
     date_to = DateTime.now
     if @user.last_reflection_on == nil
     date_from = @user.created_at.to_date
