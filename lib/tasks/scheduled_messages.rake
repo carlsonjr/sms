@@ -65,7 +65,7 @@ namespace :scheduled_messages do
 task :email_reflection => :environment do
 
 # Change :id to :enabled for full deployment
-    User.where(:id => 1).each do |user|
+    User.where(:enabled => 1).each do |user|
 
         ReflectionMailer.weekly_reflection(user).deliver
 

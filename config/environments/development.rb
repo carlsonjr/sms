@@ -43,7 +43,7 @@ Rails.application.configure do
     :port => 2525,
     :domain => ENV.fetch('MAILGUN_DOMAIN'),
     :user_name => ENV.fetch('MAILGUN_USERNAME'),
-    :password => ENV.fetch('MAILGUN_PASSWORD')
+    :password => ENV.fetch('MAILGUN_PASSWORD'),
     }
 
 
