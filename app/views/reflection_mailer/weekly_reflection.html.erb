@@ -1,49 +1,53 @@
-<div style="
+<table style="
     background-color: #007bff!important;     
-    font-family: 'Roboto Slab', serif;;
-    margin-right: 15px;
-    margin-left: 15px;
+    width:100%;
+    font-family: serif;;
     padding:15px;
     text-align: center!important;
     color: #f8f9fa!important;
     ">
-<h5 style="font-size:3rem;padding:0px;margin:0px">WDYLT</h5>
+<tr><td>
+<h1 style="font-size:3rem;padding:0px;margin:0px">WDYLT</15>
 <h5 style="font-size:0.7rem;margin-top:0px">what did you learn today</h5>
-</div>
+</td></tr>
+</table>
 
 <div style="
-    font-family: 'Roboto Slab', serif;;
+    font-family: serif;;
     margin-right: 15px;
     margin-left: 15px;
     padding:15px;
     text-align: center!important;
     color: #007bff!important;
     ">
-Congrats on another week of growth! </br></br><span style="font-size:1 rem;">Take 10-20 minutes and summarize your learnings from the week</span> 
+<p style="font-size:1rem">Congrats on another week of growth!</p>
 
-<a href="http://www.get-wdylt.com/new_reflection" style="font-family: 'Roboto Slab', serif;    display: block;
+<p style="font-size:1rem">Take 10-20 minutes and summarize your learnings from the week</p>
+
+<h1 style="font-size:2rem; "><a href="http://www.get-wdylt.com/new_reflection" style="font-family: serif;    display: block;
     width: 75%;    padding: .5rem 1rem;
-    font-size: 1.25rem;
     line-height: 1.5;
     border-radius: .3rem;font-weight: 400;
     text-align: center;
     white-space: nowrap;
-    vertical-align: middle;border: 1px solid transparent; background-color: #007bff; margin:auto;margin-top:15px;color:f8f9fa;">Reflect now.</a>   
+    vertical-align: middle;border: 1px solid transparent; background-color: #007bff; margin:auto;margin-top:15px;color:white;">Reflect now!</a></h1>
 
 </div>
 
 
-<div style="
+<table style="
     background-color: #007bff!important;     
-    font-family: 'Roboto Slab', serif;;
-    margin-right: 15px;
-    margin-left: 15px;
+    font-family: serif;;
     padding:15px;
     text-align: center!important;
     color: #f8f9fa!important;
     ">
+<tr><td>
 <h5 style="font-size:1rem;padding:0px;margin:0px">Here's everything you've learned since the last time you reflected:</h5>
-</div>
+</td></tr>
+</table>
+
+
 <% if @user_responses.count != 0%>
 <% @user_responses.each do |response| %>
 
@@ -51,13 +55,8 @@ Congrats on another week of growth! </br></br><span style="font-size:1 rem;">Tak
     
     
     
-    <div style="position: relative;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
+    <table style="position: relative;
+        width:80%;
         background-color: #fff;
         background-clip: border-box;
         border: 1px solid rgba(0,0,0,.125);
@@ -68,17 +67,17 @@ Congrats on another week of growth! </br></br><span style="font-size:1 rem;">Tak
         margin-top:3px;
         padding:5px;
     ">
-    
+    <tr><td>    
     <div stye="
-        font-size: 80%;
         font-family: sans-serif;
     ">
         <% t = response.created_at.in_time_zone(@user.time_zone) %>
-        <small class="card-text text-right"><%=t.strftime("%A, %B %-d, %Y: %l:%M %p %Z")%></small>
+        <h5 style="font-size:.7rem;"><%=t.strftime("%A, %B %-d, %Y: %l:%M %p %Z")%></h5>
         
         
     </div>
            <p><%=response.response_text%></p>
     </div>
+    </td></tr>
 <% end %>
 <% end %>

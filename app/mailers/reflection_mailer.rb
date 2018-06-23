@@ -5,10 +5,11 @@ class ReflectionMailer < ApplicationMailer
   #
   #   en.reflection_mailer.weekly_reflection.subject
   #
-  default from: "postmaster@sandbox79904ddb5152410890e7f7a9da0bb03c.mailgun.org"
+  
+  default from: 'reflect@get-wdylt.com'
   
   
-  def weekly_reflection(user)
+  def weekly_reflection
     @user = User.find(5)
     date_to = DateTime.now
     if @user.last_reflection_on == nil

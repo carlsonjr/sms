@@ -40,10 +40,10 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :authentication => :plain,
     :address => "smtp.mailgun.org",
-    :port => 587,
-    :domain => ENV.fetch('MAILGUN_DOMAIN'),
-    :user_name => ENV.fetch('MAILGUN_USERNAME'),
-    :password => ENV.fetch('MAILGUN_PASSWORD'),
+    :port => 2525,
+    :domain => 'get-wdylt.com',
+    :user_name => 'reflect@get-wdylt.com',
+    :password => '1PL3!lxnJQKuT692j',
     }
 
 
