@@ -64,7 +64,6 @@ namespace :scheduled_messages do
 
 task :email_reflection => :environment do
 
-require('dotenv').config()
 # Change :id to :enabled for full deployment
     User.where(:id => 1).each do |user|
 
