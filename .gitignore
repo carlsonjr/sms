@@ -16,3 +16,4 @@
 !/vendor/assets/
 
 latest.dump*
+/config/environments/development.rb
