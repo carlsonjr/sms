@@ -41,6 +41,7 @@ Rails.application.configure do
     :authentication => :plain,
     :address => "smtp.mailgun.org",
     :port => 2525,
+
     :domain => ENV.fetch('MAILGUN_DOMAIN'),
     :user_name => ENV.fetch('MAILGUN_USERNAME'),
     :password => ENV.fetch('MAILGUN_PASSWORD'),
