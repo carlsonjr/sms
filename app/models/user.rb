@@ -15,7 +15,7 @@ class User < ApplicationRecord
              
   # Indirect associations
 
-  has_many :reflection_answers, :through => :reflection_questions
+  has_many :reflection_answers, through: :reflection_questions
 
 
   # Validations
